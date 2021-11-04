@@ -23,9 +23,10 @@ export const RegistrationDisplay = () => {
 
     return(
         <div className="RegDisplay"> 
+            <h1>Collection of Messages</h1>
             {registrations && registrations.map(registrations=>
             <div className="Entries">
-            <p>{registrations.name}</p>
+            <h3>{registrations.name}</h3>
             <p>{registrations.email}</p>
             <p>{registrations.message}</p>
             </div>
