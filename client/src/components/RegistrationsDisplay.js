@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react'; 
+import "./RegistrationDisplay.css"
 
 export const RegistrationDisplay = () => {
     const [ registrations , setRegistrations ] = useState();
@@ -23,7 +24,7 @@ export const RegistrationDisplay = () => {
     return(
         <div className="RegDisplay"> 
             {registrations && registrations.map(registrations=>
-            <div>
+            <div className="Entries">
             <p>{registrations.name}</p>
             <p>{registrations.email}</p>
             <p>{registrations.message}</p>

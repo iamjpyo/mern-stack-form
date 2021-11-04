@@ -48,8 +48,9 @@ export const RegistrationForm = () => {
     const fieldClearance = e => setFormData({ name: "", email: "", telephone:"", message: "" });
     
     return (
-        <Fragment>
+        <div className="Form">
             <Form className="mainForm" onSubmit={onSubmit}>
+            <h1>Send a message to your future self!</h1>
             <Form.Floating className="mb-3">
                 <Form.Control
                 id="Name"
@@ -105,6 +106,6 @@ export const RegistrationForm = () => {
 
             <Button variant="outline-success" type="submit" value="Register"> Submit your message</Button>
         </Form>
-        </Fragment>
+        </div>
     )
 }

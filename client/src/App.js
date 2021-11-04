@@ -7,13 +7,14 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
-    <Switch>
-        <Route exact path="/" component={RegistrationForm} />
-        <Route exact path="/display" component={RegistrationDisplay} />
-    </Switch>
-    </BrowserRouter>
-
+    <div className="App">
+      <BrowserRouter>
+      <Switch>
+          <Route exact path="/" component={RegistrationForm} />
+          <Route exact path="/display" component={RegistrationDisplay} />
+      </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 
