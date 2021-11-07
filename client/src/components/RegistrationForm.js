@@ -2,7 +2,7 @@ import React, {Fragment, useState} from 'react';
 import axios from "axios";
 import Form from 'react-bootstrap/esm/Form';
 import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert'
+import Modal from 'react-bootstrap/Modal';
 import "./RegistrationForm.css";
 
 
@@ -13,6 +13,11 @@ export const RegistrationForm = () => {
         telephone: '',
         message: ''
     });
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const { name, email, telephone, message } = formData;
 
@@ -43,12 +48,34 @@ export const RegistrationForm = () => {
             console.error(err.response.data);
         }
 
-         fieldClearance()
+         fieldClearance();
     }
-    const fieldClearance = e => setFormData({ name: "", email: "", telephone:"", message: "" });
+    async function fieldClearance (){
+        setFormData({ name: "", email: "", telephone:"", message: "" });
+        await handleShow();
+    };
+ 
+
+  
     
     return (
         <div className="Form">
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Footer>
+                <Button variant="outline-secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                <Button variant="dark" onClick={handleClose}>
+                    Save Changes
+                </Button>
+                </Modal.Footer>
+            </Modal>
+
+
             <Form className="mainForm" onSubmit={onSubmit}>
             <h1>Send a message to your future self!</h1>
             <Form.Floating className="mb-3">
@@ -104,8 +131,9 @@ export const RegistrationForm = () => {
                 <label htmlFor="floatingPasswordCustom">Message To Future Self</label>
             </Form.Floating>
 
-            <Button variant="outline-success" type="submit" value="Register"> Submit your message</Button>
+            <Button variant="dark" type="submit" value="Register"> Submit your message</Button>
         </Form>
+
         </div>
     )
 }
