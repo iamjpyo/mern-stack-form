@@ -50,7 +50,7 @@ export const RegistrationForm = () => {
     }
 
     async function fieldClearance (){
-        setFormData({ name: "", email: "", telephone:"", message: "" });
+        await setFormData({ name: "", email: "", telephone:"", message: "" });
         await handleShow();
     };
     
@@ -58,15 +58,15 @@ export const RegistrationForm = () => {
         <div className="Form">
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Successful Post</Modal.Title>
+                <Modal.Title>Successful Post!</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Good Job! Your vote and comment have been successfully posted!</Modal.Body>
+                <Modal.Body>Good Job! Your vote and comment successfully posted!</Modal.Body>
                 <Modal.Footer>
                 <Button variant="outline-secondary" onClick={handleClose}>
                     Close
                 </Button>
                 <Button variant="dark" onClick={event =>  window.location.href='/display'}>
-                    Save Changes
+                    Go To Submissions!
                 </Button>
                 </Modal.Footer>
             </Modal>
@@ -123,7 +123,7 @@ export const RegistrationForm = () => {
                 required
                 style={{ height: '100px' }}
                 />
-                <label htmlFor="floatingPasswordCustom">Message To Future Self</label>
+                <label htmlFor="floatingPasswordCustom">Comment</label>
             </Form.Floating>
 
             <Button variant="dark" type="submit" value="Register"> Submit your message</Button>
