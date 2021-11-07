@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, { useState} from 'react';
 import axios from "axios";
 import Form from 'react-bootstrap/esm/Form';
 import Button from 'react-bootstrap/Button';
@@ -13,13 +13,11 @@ export const RegistrationForm = () => {
         telephone: '',
         message: ''
     });
+    const { name, email, telephone, message } = formData;
 
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    const { name, email, telephone, message } = formData;
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value});
 
@@ -50,34 +48,31 @@ export const RegistrationForm = () => {
 
          fieldClearance();
     }
+
     async function fieldClearance (){
         setFormData({ name: "", email: "", telephone:"", message: "" });
         await handleShow();
     };
- 
-
-  
     
     return (
         <div className="Form">
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>Successful Post</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>Good Job! Your vote and comment have been successfully posted!</Modal.Body>
                 <Modal.Footer>
                 <Button variant="outline-secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="dark" onClick={handleClose}>
+                <Button variant="dark" onClick={event =>  window.location.href='/display'}>
                     Save Changes
                 </Button>
                 </Modal.Footer>
             </Modal>
 
-
             <Form className="mainForm" onSubmit={onSubmit}>
-            <h1>Send a message to your future self!</h1>
+            <h1>Send a message!</h1>
             <Form.Floating className="mb-3">
                 <Form.Control
                 id="Name"
