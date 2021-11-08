@@ -11,9 +11,10 @@ export const RegistrationForm = () => {
         name: '',
         email: '',
         telephone: '',
-        message: ''
+        message: '',
+        rating: 0
     });
-    const { name, email, telephone, message } = formData;
+    const { name, email, telephone, message, rating } = formData;
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -27,7 +28,8 @@ export const RegistrationForm = () => {
             name,
             email,
             telephone,
-            message
+            message,
+            rating
         };
 
         try {
@@ -50,8 +52,8 @@ export const RegistrationForm = () => {
     }
 
     async function fieldClearance (){
-        await setFormData({ name: "", email: "", telephone:"", message: "" });
-        await handleShow();
+        await setFormData({ name: "", email: "", telephone:"", message: "", rating: 0 });
+              handleShow();
     };
     
     return (
@@ -124,6 +126,22 @@ export const RegistrationForm = () => {
                 style={{ height: '100px' }}
                 />
                 <label htmlFor="floatingPasswordCustom">Comment</label>
+    <div className="star-rating">
+      {[...Array(5)].map((star, index) => {
+        index += 1;
+        return (
+          <button
+            type="button"
+            key={index}
+            className={index <= rating ? "on" : "off"}
+            onChange={onChange}
+            value={rating}
+          >
+            <span className="star">&#9733;</span>
+          </button>
+        );
+      })}
+    </div>
             </Form.Floating>
 
             <Button variant="dark" type="submit" value="Register"> Submit your message</Button>
