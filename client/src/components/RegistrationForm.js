@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/esm/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import "./RegistrationForm.css";
+import { StarRating } from './StarRating';
+import "./StarRating.css";
 
 
 export const RegistrationForm = () => {
@@ -12,9 +14,12 @@ export const RegistrationForm = () => {
         email: '',
         telephone: '',
         message: '',
-        rating: 0
+        rating: ''
     });
     const { name, email, telephone, message, rating } = formData;
+
+    const [starRating, setStarRating] = useState(0);
+    const [hover, setHover] = useState(0);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -52,8 +57,8 @@ export const RegistrationForm = () => {
     }
 
     async function fieldClearance (){
+        await handleShow();
         await setFormData({ name: "", email: "", telephone:"", message: "", rating: 0 });
-              handleShow();
     };
     
     return (
@@ -126,24 +131,29 @@ export const RegistrationForm = () => {
                 style={{ height: '100px' }}
                 />
                 <label htmlFor="floatingPasswordCustom">Comment</label>
-    <div className="star-rating">
-      {[...Array(5)].map((star, index) => {
-        index += 1;
-        return (
-          <button
-            type="button"
-            key={index}
-            className={index <= rating ? "on" : "off"}
-            onChange={onChange}
-            value={rating}
-          >
-            <span className="star">&#9733;</span>
-          </button>
-        );
-      })}
-    </div>
             </Form.Floating>
 
+            <div className="star-rating">
+                {[...Array(5)].map((star, index) => {
+                index += 1;
+                return (
+                    <button
+                    type="button"
+                    name='rating'
+                    key={index}
+                    className={index <= (hover || starRating) ? "on" : "off"}
+                    onClick={() => setStarRating(index)}
+                    onMouseEnter={() => setHover(index)}
+                    onMouseLeave={() => setHover(starRating)}
+                    value={index}
+                    onChange={onChange}  
+                    >
+                    <span className="star">&#9733;</span>
+                    </button>
+                );
+                })}
+            </div>
+            
             <Button variant="dark" type="submit" value="Register"> Submit your message</Button>
         </Form>
 
